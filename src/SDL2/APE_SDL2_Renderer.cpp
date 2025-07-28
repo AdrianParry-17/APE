@@ -1,5 +1,6 @@
 #include "APE/SDL2/APE_SDL2_Renderer.h"
 
+#include <algorithm>
 #include <SDL2/SDL_render.h>
 #include <SDL2/SDL2_gfxPrimitives.h>
 
@@ -148,5 +149,26 @@ void APE::SDL2::SDL2Renderer::FillEllipse(const APE::Point& center, int radiusX,
 }
 
 void APE::SDL2::SDL2Renderer::RenderSprite(const Sprite& sprite) {
-    //TODO: Continue here.
+    if (!m_data || sprite.TrianglesCount() < 3 || sprite.VerticesCount() <= 0) return;
+
+    auto& s_vertices = sprite.GetVertices();
+    auto& s_triangles = sprite.GetTriangles();
+
+    std::vector<SDL_Vertex> vertices(s_vertices.size());
+    std::vector<int> indices(s_triangles.size());
+
+    std::copy(s_triangles.begin(), s_triangles.end(), indices.begin());
+    std::transform(s_vertices.begin(), s_vertices.end(), vertices.begin(), [](const Vertex& vertex) {
+        return SDL_Vertex{
+            SDL_FPoint{(float)vertex.Position.X, (float)vertex.Position.Y},
+            SDL_Color{vertex.Color.Red, vertex.Color.Green, vertex.Color.Blue, vertex.Color.Alpha},
+            SDL_FPoint{(float)vertex.TexturePosition.X, (float)vertex.TexturePosition.Y}
+        };
+    });
+
+    int res = SDL_RenderGeometry(
+        m_data, nullptr,
+        vertices.data(), vertices.size(),
+        indices.empty() ? nullptr : indices.data(), indices.size()
+    );
 }
