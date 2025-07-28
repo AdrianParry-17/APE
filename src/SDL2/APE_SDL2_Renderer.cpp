@@ -1,10 +1,32 @@
 #include "APE/SDL2/APE_SDL2_Renderer.h"
+#include "SDL_video.h"
 
 #include <algorithm>
+#include <stdexcept>
 #include <SDL2/SDL_render.h>
 #include <SDL2/SDL2_gfxPrimitives.h>
 
 //* --- APE::SDL2::SDL2Renderer ---
+
+APE::SDL2::SDL2Renderer::SDL2Renderer(SDL2Window* window) {
+    if (!window)
+        throw std::runtime_error("SDL2Renderer: Invalid SDL2Window to create!");
+    
+    std::size_t win_id = window->GetID();
+    SDL_Window* sdl_window = SDL_GetWindowFromID(win_id);
+    
+    if (!sdl_window)
+        throw std::runtime_error("SDL2Renderer: Invalid SDL2Window to create!");
+    SDL_Renderer* renderer = SDL_GetRenderer(sdl_window);
+    if (renderer)
+        throw std::runtime_error("SDL2Renderer: An SDL2Window can only have one renderer!");
+
+    m_data = SDL_CreateRenderer(sdl_window, -1, SDL_RENDERER_ACCELERATED);
+}
+APE::SDL2::SDL2Renderer::~SDL2Renderer() {
+    if (m_data)
+        SDL_DestroyRenderer(m_data);
+}
 
 APE::SDL2::SDL2DrawBlendMode APE::SDL2::SDL2Renderer::GetDrawBlendMode() const {
     if (!m_data) return SDL2DrawBlendMode::Invalid;
@@ -166,7 +188,7 @@ void APE::SDL2::SDL2Renderer::RenderSprite(const Sprite& sprite) {
         };
     });
 
-    int res = SDL_RenderGeometry(
+    SDL_RenderGeometry(
         m_data, nullptr,
         vertices.data(), vertices.size(),
         indices.empty() ? nullptr : indices.data(), indices.size()

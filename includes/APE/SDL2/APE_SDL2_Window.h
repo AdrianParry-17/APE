@@ -8,6 +8,8 @@
 
 namespace APE {
     namespace SDL2 {
+        class SDL2Renderer;
+
         /// @brief The SDL2 Window Flags enum, use to identify the flags of an SDL2 window.
         enum class SDL2WindowFlags {
             /// @brief Unknown flags.

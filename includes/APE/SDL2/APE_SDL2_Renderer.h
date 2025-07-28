@@ -2,6 +2,7 @@
 #define __APE_SDL2_RENDERER_H__
 
 #include "../APE_Renderer.h"
+#include "APE_SDL2_Window.h"
 
 #include <SDL2/SDL_render.h>
 
@@ -22,6 +23,13 @@ namespace APE {
         private:
             SDL_Renderer* m_data = nullptr;
         public:
+            /// @brief Create a new SDL2 Renderer.
+            /// @param window The window to create
+            SDL2Renderer(SDL2Window* window);
+            virtual ~SDL2Renderer();
+
+            APE_NOT_COPY_ASSIGNABLE(SDL2Renderer)
+
             /// @brief Get the current draw blend mode of the SDL2 Renderer.
             /// @return The current draw blend mode of the SDL2 Renderer, or Invalid on failed.
             SDL2DrawBlendMode GetDrawBlendMode() const;
