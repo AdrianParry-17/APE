@@ -3,7 +3,6 @@
 #include <SDL2/SDL_video.h>
 #include <memory>
 
-
 int main() {
     std::shared_ptr<APE::SDL2::SDL2Window> window(APE::SDL2::SDL2WindowBuilder()
         .SetTitle("Game Window")

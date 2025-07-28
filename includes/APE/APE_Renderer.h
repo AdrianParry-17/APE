@@ -75,7 +75,7 @@ namespace APE {
         /// @brief Clear the renderer drawing area.
         /// @param color The clear color.
         virtual void Clear(const Color& color);
-        /// @brief Display the drawing area to the output screen.
+        /// @brief Display the drawing area to the output.
         virtual void Present();
 
         /// @brief Rendering a sprite to the drawing area.

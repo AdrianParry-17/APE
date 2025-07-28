@@ -5,6 +5,7 @@ set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 add_library(APE SHARED
+    src/SDL2/APE_SDL2_Renderer.cpp
     src/SDL2/APE_SDL2_Window.cpp
     src/APE_Color.cpp
     src/APE_Structure.cpp
