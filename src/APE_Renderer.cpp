@@ -1,6 +1,4 @@
 #include "APE/APE_Renderer.h"
-#include "APE/APE_Color.h"
-#include <stdexcept>
 
 //* --- APE::Sprite ---
 
@@ -27,16 +25,3 @@ std::vector<APE::Vertex>& APE::Sprite::GetVertices() { return m_vertices; }
 
 const std::vector<std::size_t>& APE::Sprite::GetTriangles() const { return m_triangles; }
 std::vector<std::size_t>& APE::Sprite::GetTriangles() { return m_triangles; }
-
-
-//* --- APE::IRenderer ---
-
-void APE::IRenderer::Clear(const APE::Color& color) {
-    throw std::runtime_error("APE::IRenderer::Clear: Not implemented!");
-}
-void APE::IRenderer::Present() {
-    throw std::runtime_error("APE::IRenderer::Present: Not implemented!");
-}
-void APE::IRenderer::RenderSprite(const APE::Sprite& sprite) {
-    throw std::runtime_error("APE::IRenderer::RenderSprite: Not implemented!");
-}

@@ -8,8 +8,8 @@ add_library(APE SHARED
     src/SDL2/APE_SDL2_Renderer.cpp
     src/SDL2/APE_SDL2_Window.cpp
     src/APE_Color.cpp
+    src/APE_Renderer.cpp
     src/APE_Structure.cpp
-    src/APE_Window.cpp
     src/APE.cpp
 )
 

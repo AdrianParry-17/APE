@@ -18,30 +18,30 @@ namespace APE {
         APE_NOT_COPY_ASSIGNABLE(IWindow)
 
         /// @brief Make the window visible.
-        virtual void Show();
+        virtual void Show() {}
         /// @brief Make the window invisible.
-        virtual void Hide();
+        virtual void Hide() {}
 
         /// @brief Set the position of the window.
         /// @param position The new position to set.
-        virtual void SetPosition(const Point& position);
+        virtual void SetPosition(const Point& position) {}
         /// @brief Get the position of the window.
         /// @return The position of the window.
-        virtual Point GetPosition() const;
+        virtual Point GetPosition() const { return Point::Zero; }
 
         /// @brief Set the size of the window.
         /// @param size The new size to set.
-        virtual void SetSize(const Size& size);
+        virtual void SetSize(const Size& size) {}
         /// @brief Get the size of the window.
         /// @return The size of the window.
-        virtual Size GetSize() const;
+        virtual Size GetSize() const { return Size::Zero; }
 
         /// @brief Set the title of the window.
         /// @param title The new title of the window.
-        virtual void SetTitle(const std::string& title);
+        virtual void SetTitle(const std::string& title) {}
         /// @brief Get the title of the window.
         /// @return The title of the window.
-        virtual std::string GetTitle() const;
+        virtual std::string GetTitle() const { return ""; }
     };
 
     /// @brief The Window Builder template, provide a builder for APE window.

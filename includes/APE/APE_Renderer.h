@@ -1,7 +1,7 @@
 #ifndef __APE_RENDERER_H__
 #define __APE_RENDERER_H__
 
-#include "APE/APE_Structure.h"
+#include "APE_Structure.h"
 #include "APE_Define.h"
 #include "APE_Color.h"
 #include <vector>
@@ -74,13 +74,13 @@ namespace APE {
 
         /// @brief Clear the renderer drawing area.
         /// @param color The clear color.
-        virtual void Clear(const Color& color);
+        virtual void Clear(const Color& color) {}
         /// @brief Display the drawing area to the output.
-        virtual void Present();
+        virtual void Present() {}
 
         /// @brief Rendering a sprite to the drawing area.
         /// @param sprite The sprite to render.
-        virtual void RenderSprite(const Sprite& sprite);
+        virtual void RenderSprite(const Sprite& sprite) {}
     };
 }
 
